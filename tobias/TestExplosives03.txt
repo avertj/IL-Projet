@@ -1,0 +1,8 @@
+group TestAssign004[us=true] {
+	Explosives e = new Explosives();
+	@storeProd{50};
+}
+
+group storeProd {
+	e.add_assign("Bat1", "Prod1");
+}

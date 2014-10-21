@@ -61,6 +61,7 @@ public class Explosives {
     //@ requires (prod1.startsWith("Prod") && prod2.startsWith("Prod"));
     // precond prop 5
     //@ requires (!prod1.equals(prod2));
+    // add precond prop 7
     public void add_incomp(String prod1, String prod2) {
         incomp[nb_inc][0] = prod1;
         incomp[nb_inc][1] = prod2;
@@ -73,6 +74,7 @@ public class Explosives {
     //@ requires (nb_assign < (30 - 1));
     // precond prop 4
     //@ requires (bat.startsWith("Bat") && prod.startsWith("Prod"));
+    // add precond prop 7
     public void add_assign(String bat, String prod) {
         assign[nb_assign][0] = bat;
         assign[nb_assign][1] = prod;
@@ -80,6 +82,7 @@ public class Explosives {
     }
 
     //@ requires (prod1.startsWith("Prod") && prod2.startsWith("Prod"));
+    // remplacer par une condition existentielle
     //@ requires prodExists(prod1);
     //@ requires prodExists(prod2);
     public boolean compatible(String prod1, String prod2) {

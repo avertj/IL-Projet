@@ -18,15 +18,15 @@ class ExplosivesMain{
 		System.out.println("compatible(Prod_Glycerine, Prod_Nitro) = " + e.compatible("Prod_Glycerine", "Prod_Nitro"));
 		System.out.println("compatible(Prod_Nitro, Prod_Glycerine) = " + e.compatible("Prod_Nitro", "Prod_Glycerine"));
 		System.out.println("compatible(Prod_Dyna, Prod_Nitro) = " + e.compatible("Prod_Dyna", "Prod_Nitro"));
-		System.out.println("compatible(Prod_Glycerine, Prod_Lol) = " + e.compatible("Prod_Glycerine", "Prod_Lol"));
+		//System.out.println("compatible(Prod_Glycerine, Prod_Lol) = " + e.compatible("Prod_Glycerine", "Prod_Lol"));
 
 		System.out.println("findBat(Prod_Glycerine) = " + e.findBat("Prod_Glycerine"));
 		System.out.println("findBat(Prod_Nitro) = " + e.findBat("Prod_Nitro"));
 		System.out.println("findBat(Prod_Dyna) = " + e.findBat("Prod_Dyna"));
 
-		System.out.println("Assigning Prod_Glycerine to Bat_1");
-		e.add_assign("Bat_1","Prod_Glycerine");
-		System.out.println("It should have exploded at this point");
+		//System.out.println("Assigning Prod_Glycerine to Bat_1");
+		//e.add_assign("Bat_1","Prod_Glycerine");
+		//System.out.println("It should have exploded at this point");
 		System.out.println("-------------------------");
 		System.out.println("Incompatibilities");
 		for(int i=0; i< e.nb_inc; i++){System.out.println(e.incomp[i][0] + "  " +e.incomp[i][1] );}
