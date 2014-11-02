@@ -121,7 +121,13 @@ public class Explosives {
     public String findBatTrivial(String prod) {
         return "new";
     }
-
+    /*@ ensures
+    @ (\exists int i; 0 <= i && i < nb_inc;
+    @ ! (incomp[i][0].equals(prod) || incomp[i][1].equals(prod)));
+    @*/
+    
+    
+    
     // helper functions
     public /*@ pure @*/ boolean prodExists(String prod) {
         boolean found = false;
@@ -133,6 +139,12 @@ public class Explosives {
         return found;
     }
 
+    
+    /*@ ensures
+    @ (\exists int i; 0 <= i && i < nb_assign;
+    @ ! ( assign[i][0].equals(bat));
+    @*/
+    
     public /*@ pure @*/ boolean batExists(String bat) {
         boolean found = false;
         int i = 0;
