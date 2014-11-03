@@ -57,11 +57,19 @@ public class Explosives {
 
     // precond prop 1
     //@ requires (nb_inc < (50 - 2));
+
     // precond prop 3
     //@ requires (prod1.startsWith("Prod") && prod2.startsWith("Prod"));
+
     // precond prop 5
     //@ requires (!prod1.equals(prod2));
-    // add precond prop 7
+
+    // precond prop 7
+    //@ requires (\forall int i; 0 <= i &&  i < nb_assign;
+    //@              assign[i][1].equals(prod1) ==>
+    //@                  (\forall int j; 0 <= j &&  j < nb_assign;
+    //@                      assign[i][0].equals(assign[j][0]) ==>
+    //@                          !assign[j][1].equals(prod2)));
     public void add_incomp(String prod1, String prod2) {
         incomp[nb_inc][0] = prod1;
         incomp[nb_inc][1] = prod2;
@@ -72,20 +80,28 @@ public class Explosives {
 
     // precond prop 2
     //@ requires (nb_assign < (30 - 1));
+
     // precond prop 4
     //@ requires (bat.startsWith("Bat") && prod.startsWith("Prod"));
-    // add precond prop 7
+
+    // precond prop 7
+    //@ requires (\forall int i; 0 <= i &&  i < nb_assign;
+    //@              assign[i][0].equals(bat) && !assign[i][1].equals(prod) ==>
+    //@                  compatible(assign[i][1], prod));
     public void add_assign(String bat, String prod) {
         assign[nb_assign][0] = bat;
         assign[nb_assign][1] = prod;
         nb_assign = nb_assign + 1;
     }
 
+    // precond prop 3
     //@ requires (prod1.startsWith("Prod") && prod2.startsWith("Prod"));
-    // remplacer par une condition existentielle
-    //@ requires prodExists(prod1);
-    //@ requires prodExists(prod2);
-    public boolean compatible(String prod1, String prod2) {
+
+    // verifier existance de prod1 et prod2 dans incomp
+    //@ requires (\exists int i; 0 <= i && i < nb_inc;
+    //@              (incomp[i][0].equals(prod1) || incomp[i][1].equals(prod1)) &&
+    //@              (incomp[i][0].equals(prod2) || incomp[i][1].equals(prod2)));
+    public /*@ pure @*/ boolean compatible(String prod1, String prod2) {
         int i = 0;
         boolean compatible = true;
         while(compatible && i < nb_inc) {
@@ -123,26 +139,6 @@ public class Explosives {
     }
 
     // helper functions
-    public /*@ pure @*/ boolean prodExists(String prod) {
-        boolean found = false;
-        int i = 0;
-        while(!found && i < nb_inc) {
-            found = incomp[i][0].equals(prod) || incomp[i][1].equals(prod);
-            i++;
-        }
-        return found;
-    }
-
-    public /*@ pure @*/ boolean batExists(String bat) {
-        boolean found = false;
-        int i = 0;
-        while(!found && i < nb_assign) {
-            found = assign[i][0].equals(bat);
-            i++;
-        }
-        return found;
-    }
-
     private List getBats() {
         List bats = new ArrayList();
         for(int i = 0; i < nb_assign; i++) {

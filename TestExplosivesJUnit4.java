@@ -121,4 +121,26 @@ public class TestExplosivesJUnit4 {
 			handleJMLAssertionError(e);		
 		}  
 	}
+
+	@Test
+	public void  testInvalider_Prop7_2() {
+		try {
+			e = new Explosives();
+			e.add_assign("Bat_1","Prod_1");
+			e.add_assign("Bat_1","Prod_2");
+			e.add_incomp("Prod_1","Prod_2");
+		} catch(org.jmlspecs.jmlrac.runtime.JMLAssertionError e) {
+			handleJMLAssertionError(e);		
+		}  
+	}
+
+	@Test
+	public void  testInvalider_Verif() {
+		try {
+			e = new Explosives();
+			e.compatible("Prod_1", "Prod_2");
+		} catch(org.jmlspecs.jmlrac.runtime.JMLAssertionError e) {
+			handleJMLAssertionError(e);		
+		}  
+	}
 }
